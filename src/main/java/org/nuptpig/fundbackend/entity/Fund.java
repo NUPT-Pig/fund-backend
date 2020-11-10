@@ -3,6 +3,7 @@ package org.nuptpig.fundbackend.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -16,6 +17,7 @@ public class Fund {
     @Column(name = "fund_name", nullable = false, unique = true)
     private String fundName;
 
-    @OneToMany(mappedBy = "fund")
-    Set<StockRating> ratings;
+    @ManyToMany
+    @JoinTable(name = "stock_rating_tb", joinColumns = @JoinColumn(name = "fund_code"), inverseJoinColumns = @JoinColumn(name = "stock_code"))
+    private List<Stock> stockList;
 }

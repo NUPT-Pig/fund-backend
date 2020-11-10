@@ -4,6 +4,7 @@ import org.nuptpig.fundbackend.entity.Fund;
 import org.nuptpig.fundbackend.service.FundService;
 import org.nuptpig.fundbackend.util.CommonResult;
 import org.nuptpig.fundbackend.util.MapperHelper;
+import org.nuptpig.fundbackend.vo.FundDetailResponse;
 import org.nuptpig.fundbackend.vo.FundRequest;
 import org.nuptpig.fundbackend.vo.FundResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,7 @@ public class FundController {
 
     @GetMapping(path = "")
     public CommonResult getFunds(){
-        List<Fund> funds = fundService.getFunds();
-        List<FundResponse> fundResponses = MapperHelper.SourcesToDestinations(funds, FundResponse.class);
+        List<FundResponse> fundResponses = fundService.getFunds();
         return CommonResult.success(fundResponses);
     }
 
@@ -34,5 +34,11 @@ public class FundController {
     public void createFund(@RequestBody FundRequest fundRequest){
         Fund fund = MapperHelper.SourceToDestination(fundRequest, Fund.class);
         fundService.createFund(fund);
+    }
+
+    @GetMapping(value = "/{fundCode}")
+    public CommonResult getFundByFundCode(@PathVariable String fundCode){
+        FundDetailResponse fundDetailResponse = fundService.getFundByFundCode(fundCode);
+        return CommonResult.success(fundDetailResponse);
     }
 }

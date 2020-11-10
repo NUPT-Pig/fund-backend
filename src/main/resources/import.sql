@@ -6,4 +6,4 @@ INSERT INTO fund_tb (fund_code, fund_name) VALUES ('004070', '南方中证全指
 
 INSERT INTO stock_tb (stock_code, stock_name) VALUES ('000661', '长春高新');
 
-INSERT INTO
+INSERT INTO stock_rating_tb (id, fund_code, stock_code, rate) VALUES (1, '501010', '000661', 9.72);

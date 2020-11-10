@@ -8,7 +8,7 @@ import java.util.Objects;
 @Data
 @Entity
 @Table(name = "stock_rating_tb")
-class StockRating {
+public class StockRating {
     @Id
     private Long id;
 
@@ -19,6 +19,8 @@ class StockRating {
     @ManyToOne
     @JoinColumn(name = "stock_code")
     Stock stock;
+
+    private float rate;
 }
 
 
