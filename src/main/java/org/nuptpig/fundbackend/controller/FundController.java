@@ -2,6 +2,7 @@ package org.nuptpig.fundbackend.controller;
 
 import org.nuptpig.fundbackend.entity.Fund;
 import org.nuptpig.fundbackend.service.FundService;
+import org.nuptpig.fundbackend.util.CommonResponse;
 import org.nuptpig.fundbackend.util.CommonResult;
 import org.nuptpig.fundbackend.util.MapperHelper;
 import org.nuptpig.fundbackend.vo.FundDetailResponse;
@@ -9,6 +10,7 @@ import org.nuptpig.fundbackend.vo.FundRequest;
 import org.nuptpig.fundbackend.vo.FundResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,21 +26,21 @@ public class FundController {
     }
 
     @GetMapping(path = "")
-    public CommonResult getFunds(){
+    public ResponseEntity getFunds(){
         List<FundResponse> fundResponses = fundService.getFunds();
-        return CommonResult.success(fundResponses);
+        return CommonResponse.ok(fundResponses);
     }
 
     @PostMapping(path = "")
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public void createFund(@RequestBody FundRequest fundRequest){
+    public ResponseEntity createFund(@RequestBody FundRequest fundRequest){
         Fund fund = MapperHelper.SourceToDestination(fundRequest, Fund.class);
         fundService.createFund(fund);
+        return CommonResponse.ok(HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{fundCode}")
-    public CommonResult getFundByFundCode(@PathVariable String fundCode){
+    public ResponseEntity getFundByFundCode(@PathVariable String fundCode){
         FundDetailResponse fundDetailResponse = fundService.getFundByFundCode(fundCode);
-        return CommonResult.success(fundDetailResponse);
+        return CommonResponse.ok(fundDetailResponse);
     }
 }

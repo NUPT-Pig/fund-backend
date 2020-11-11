@@ -2,7 +2,8 @@ package org.nuptpig.fundbackend.util;
 
 
 public enum ResultCode {
-    SUCCESS(200, "成功");
+    SUCCESS(200, "成功"),
+    FAIL(400, "失败");
     private long code;
     private String message;
 

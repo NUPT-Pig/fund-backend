@@ -14,11 +14,19 @@ public class CommonResult<T> {
         this.data = data;
     }
 
-    public static <T> CommonResult<T> success(T data){
-        return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
+    static <T> CommonResult<T> success(T data){
+        return new CommonResult<>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }
 
-    public static <T> CommonResult<T> success(T data, ResultCode resultCode){
-        return new CommonResult<T>(resultCode.getCode(), resultCode.getMessage(), data);
+    static <T> CommonResult<T> success(T data, ResultCode resultCode){
+        return new CommonResult<>(resultCode.getCode(), resultCode.getMessage(), data);
+    }
+
+    static <T> CommonResult<T> fail(T data){
+        return new CommonResult<>(ResultCode.FAIL.getCode(), ResultCode.FAIL.getMessage(), data);
+    }
+
+    static <T> CommonResult<T> fail(T data, ResultCode resultCode){
+        return new CommonResult<>(resultCode.getCode(), resultCode.getMessage(), data);
     }
 }
