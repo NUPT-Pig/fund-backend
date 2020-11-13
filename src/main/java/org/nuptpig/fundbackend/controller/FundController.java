@@ -38,9 +38,14 @@ public class FundController {
         return CommonResponse.ok(HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/{fundCode}")
+    @GetMapping(path = "/{fundCode}")
     public ResponseEntity getFundByFundCode(@PathVariable String fundCode){
         FundDetailResponse fundDetailResponse = fundService.getFundByFundCode(fundCode);
         return CommonResponse.ok(fundDetailResponse);
+    }
+
+    @PostMapping(path = "/user_bind")
+    public ResponseEntity userBind(){
+        return CommonResponse.ok(HttpStatus.OK);
     }
 }

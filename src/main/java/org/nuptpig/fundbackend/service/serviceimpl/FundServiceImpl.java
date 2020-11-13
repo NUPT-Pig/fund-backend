@@ -17,11 +17,9 @@ import java.util.List;
 @Service
 public class FundServiceImpl implements FundService {
     private final FundRepository fundRepository;
-    private final StockRatingRepository stockRatingRepository;
 
-    public FundServiceImpl(FundRepository fundRepository, StockRatingRepository stockRatingRepository) {
+    public FundServiceImpl(FundRepository fundRepository) {
         this.fundRepository = fundRepository;
-        this.stockRatingRepository = stockRatingRepository;
     }
 
     @Override
@@ -38,12 +36,6 @@ public class FundServiceImpl implements FundService {
     @Override
     public FundDetailResponse getFundByFundCode(String fundCode) {
         Fund fund = fundRepository.getFundByFundCode(fundCode);
-        List<StockRating> stockRatings = stockRatingRepository.findAllByFundFundCode(fundCode);
-        List<StockInFundResponse> stockInFundResponses = new ArrayList<>();
-        for(StockRating stockRating : stockRatings){
-            stockInFundResponses.add(new StockInFundResponse(stockRating.getStock().getStockCode(),
-                    stockRating.getStock().getStockName(), stockRating.getRate()));
-        }
-        return new FundDetailResponse(fundCode, fund.getFundName(), stockInFundResponses);
+        return MapperHelper.SourceToDestination(fund, FundDetailResponse.class);
     }
 }
