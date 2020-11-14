@@ -10,6 +10,7 @@ import java.util.Objects;
 @Table(name = "stock_rating_tb")
 public class StockRating {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne

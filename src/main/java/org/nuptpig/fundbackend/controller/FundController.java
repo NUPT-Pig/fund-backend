@@ -27,6 +27,7 @@ public class FundController {
 
     @GetMapping(path = "")
     public ResponseEntity getFunds(){
+        // @todo   根据用户返回   admin返回所有     user返回各自的
         List<FundResponse> fundResponses = fundService.getFunds();
         return CommonResponse.ok(fundResponses);
     }

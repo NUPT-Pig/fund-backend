@@ -11,6 +11,7 @@ import java.util.Set;
 @Table(name = "stock_tb")
 public class Stock {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "stock_code")
     private String stockCode;
 
