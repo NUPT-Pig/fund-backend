@@ -4,6 +4,7 @@ import org.nuptpig.fundbackend.entity.Fund;
 import org.nuptpig.fundbackend.vo.FundDetailResponse;
 import org.nuptpig.fundbackend.vo.FundResponse;
 import org.nuptpig.fundbackend.vo.FundsInUserResponse;
+import org.nuptpig.fundbackend.vo.UserBindRequest;
 
 import java.util.List;
 
@@ -12,4 +13,5 @@ public interface FundService {
     Fund createFund(Fund fund);
     FundDetailResponse getFundByFundCode(String fundCode);
     List<FundsInUserResponse> getFundsByUserName(String userName);
+    Boolean bindUser(UserBindRequest userBindRequest);
 }

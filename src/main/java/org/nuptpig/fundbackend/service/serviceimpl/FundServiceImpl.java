@@ -9,6 +9,7 @@ import org.nuptpig.fundbackend.util.MapperHelper;
 import org.nuptpig.fundbackend.vo.FundDetailResponse;
 import org.nuptpig.fundbackend.vo.FundResponse;
 import org.nuptpig.fundbackend.vo.FundsInUserResponse;
+import org.nuptpig.fundbackend.vo.UserBindRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -45,5 +46,17 @@ public class FundServiceImpl implements FundService {
     public List<FundsInUserResponse> getFundsByUserName(String userName) {
         List<UserBinding> userBindings = userBindingRepository.findAllByUserName(userName);
         return MapperHelper.SourcesToDestinations(userBindings, FundsInUserResponse.class);
+    }
+
+    @Override
+    public Boolean bindUser(UserBindRequest userBindRequest) {
+        UserBinding userBinding = MapperHelper.SourceToDestination(userBindRequest, UserBinding.class);
+        Fund fund = fundRepository.getFundByFundCode(userBindRequest.getFundCode());
+        if (fund == null){
+            return false;
+        }
+        userBinding.setFund(fund);
+        userBindingRepository.save(userBinding);
+        return true;
     }
 }

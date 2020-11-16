@@ -8,6 +8,7 @@ import org.nuptpig.fundbackend.util.MapperHelper;
 import org.nuptpig.fundbackend.vo.FundDetailResponse;
 import org.nuptpig.fundbackend.vo.FundRequest;
 import org.nuptpig.fundbackend.vo.FundResponse;
+import org.nuptpig.fundbackend.vo.UserBindRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +47,12 @@ public class FundController {
     }
 
     @PostMapping(path = "/user_bind")
-    public ResponseEntity userBind(){
-        return CommonResponse.ok(HttpStatus.OK);
+    public ResponseEntity userBind(@RequestBody UserBindRequest userBindRequest){
+        if (fundService.bindUser(userBindRequest)) {
+            return CommonResponse.ok(HttpStatus.OK);
+        }
+        else{
+            return CommonResponse.fail(HttpStatus.BAD_REQUEST);
+        }
     }
 }
