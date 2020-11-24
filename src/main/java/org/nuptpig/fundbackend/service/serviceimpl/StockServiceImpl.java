@@ -24,7 +24,7 @@ public class StockServiceImpl implements StockService {
         List<StockRating> stockRatings = stockRatingRepository.findAllByFundFundCode(fundCode);
         List<StockInFundResponse> stockInFundResponses = new ArrayList<>();
         for(StockRating stockRating : stockRatings){
-            stockInFundResponses.add(MapperHelper.SourceToDestination(stockRating.getStock(), StockInFundResponse.class));
+            stockInFundResponses.add(MapperHelper.SourceToDestination(stockRating, StockInFundResponse.class));
         }
         return stockInFundResponses;
     }
