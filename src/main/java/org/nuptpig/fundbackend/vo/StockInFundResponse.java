@@ -17,4 +17,5 @@ public class StockInFundResponse {
 
     private float rate;
 
+    private List<FundResponse> funds;
 }

@@ -5,11 +5,11 @@ import org.nuptpig.fundbackend.service.FundService;
 import org.nuptpig.fundbackend.util.CommonResponse;
 import org.nuptpig.fundbackend.util.CommonResult;
 import org.nuptpig.fundbackend.util.MapperHelper;
-import org.nuptpig.fundbackend.vo.FundDetailResponse;
-import org.nuptpig.fundbackend.vo.FundRequest;
-import org.nuptpig.fundbackend.vo.FundResponse;
-import org.nuptpig.fundbackend.vo.UserBindRequest;
+import org.nuptpig.fundbackend.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +27,12 @@ public class FundController {
     }
 
     @GetMapping(path = "")
-    public ResponseEntity getFunds(){
+    public ResponseEntity getFunds(@RequestParam(value = "per_page", required = false, defaultValue = "20") int perPage,
+                                   @RequestParam(value = "page", required = false, defaultValue = "0") int page){
         // @todo   根据用户返回   admin返回所有     user返回各自的
-        List<FundResponse> fundResponses = fundService.getFunds();
-        return CommonResponse.ok(fundResponses);
+        Pageable pageable = PageRequest.of(page, perPage);
+        PageableFundResponse pageableFundResponse = fundService.getFunds(pageable);
+        return CommonResponse.ok(pageableFundResponse);
     }
 
     @PostMapping(path = "")

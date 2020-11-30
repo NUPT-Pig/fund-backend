@@ -6,12 +6,11 @@ import org.nuptpig.fundbackend.entity.Fund;
 import org.nuptpig.fundbackend.entity.UserBinding;
 import org.nuptpig.fundbackend.service.FundService;
 import org.nuptpig.fundbackend.util.MapperHelper;
-import org.nuptpig.fundbackend.vo.FundDetailResponse;
-import org.nuptpig.fundbackend.vo.FundResponse;
-import org.nuptpig.fundbackend.vo.FundsInUserResponse;
-import org.nuptpig.fundbackend.vo.UserBindRequest;
+import org.nuptpig.fundbackend.vo.*;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +25,9 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
-    public List<FundResponse> getFunds() {
-        List<Fund> funds = fundRepository.findAll();
-        return MapperHelper.SourcesToDestinations(funds, FundResponse.class);
+    public PageableFundResponse getFunds(Pageable pageable) {
+        Page<Fund> funds = fundRepository.findAll(pageable);
+        return new PageableFundResponse(funds.getTotalElements(), funds.getTotalPages(), MapperHelper.SourcesToDestinations(funds.toList(), FundResponse.class));
     }
 
     @Override
@@ -40,12 +39,6 @@ public class FundServiceImpl implements FundService {
     public FundDetailResponse getFundByFundCode(String fundCode) {
         Fund fund = fundRepository.getFundByFundCode(fundCode);
         return MapperHelper.SourceToDestination(fund, FundDetailResponse.class);
-    }
-
-    @Override
-    public List<FundsInUserResponse> getFundsByUserName(String userName) {
-        List<UserBinding> userBindings = userBindingRepository.findAllByUserName(userName);
-        return MapperHelper.SourcesToDestinations(userBindings, FundsInUserResponse.class);
     }
 
     @Override

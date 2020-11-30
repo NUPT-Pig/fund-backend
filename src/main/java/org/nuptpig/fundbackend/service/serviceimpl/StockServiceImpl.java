@@ -4,6 +4,7 @@ import org.nuptpig.fundbackend.dao.StockRatingRepository;
 import org.nuptpig.fundbackend.entity.StockRating;
 import org.nuptpig.fundbackend.service.StockService;
 import org.nuptpig.fundbackend.util.MapperHelper;
+import org.nuptpig.fundbackend.vo.FundResponse;
 import org.nuptpig.fundbackend.vo.StockInFundResponse;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,9 @@ public class StockServiceImpl implements StockService {
         List<StockRating> stockRatings = stockRatingRepository.findAllByFundFundCode(fundCode);
         List<StockInFundResponse> stockInFundResponses = new ArrayList<>();
         for(StockRating stockRating : stockRatings){
-            stockInFundResponses.add(MapperHelper.SourceToDestination(stockRating, StockInFundResponse.class));
+            StockInFundResponse stockInFundResponse = MapperHelper.SourceToDestination(stockRating, StockInFundResponse.class);
+            stockInFundResponse.setFunds(MapperHelper.SourcesToDestinations(stockRating.getStock().getFundList(), FundResponse.class));
+            stockInFundResponses.add(stockInFundResponse);
         }
         return stockInFundResponses;
     }

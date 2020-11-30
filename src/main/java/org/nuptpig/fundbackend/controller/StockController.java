@@ -21,6 +21,7 @@ public class StockController {
     }
 
     @GetMapping(path = "/stocks_in_fund")
+    //获取基金持仓详情
     public ResponseEntity getStocks4Fund(@RequestParam(value = "fund_code") String fundCode){
         List<StockInFundResponse> stockInFundResponses = stockService.getStocksForFund(fundCode);
         return CommonResponse.ok(stockInFundResponses);
