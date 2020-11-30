@@ -17,7 +17,7 @@ public class UserBinding {
     private String userName;
 
     @ManyToOne
-    @JoinColumn(name = "fund_code")
+    @JoinColumn(name = "fund_id")
     Fund fund;
 
     @Column(name = "amount_held")
@@ -27,6 +27,6 @@ public class UserBinding {
     @Column(name = "created_time")
     private Timestamp createdTime;   //关注时间
 
-    @Column(name = "held_time", nullable = true)
+    @Column(name = "held_time")
     private Timestamp heldTime;  //持有时间
 }

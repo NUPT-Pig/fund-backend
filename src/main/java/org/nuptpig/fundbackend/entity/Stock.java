@@ -12,7 +12,10 @@ import java.util.Set;
 public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "stock_code")
+    @Column(name = "stock_id")
+    private Long stockId;
+
+    @Column(name = "stock_code", nullable = false, unique = true)
     private String stockCode;
 
     @Column(name = "stock_name", nullable = false, unique = true)

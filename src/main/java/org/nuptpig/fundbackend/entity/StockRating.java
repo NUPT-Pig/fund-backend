@@ -14,11 +14,11 @@ public class StockRating {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "fund_code")
+    @JoinColumn(name = "fund_id")
     Fund fund;
 
     @ManyToOne
-    @JoinColumn(name = "stock_code")
+    @JoinColumn(name = "stock_id")
     Stock stock;
 
     private float rate;

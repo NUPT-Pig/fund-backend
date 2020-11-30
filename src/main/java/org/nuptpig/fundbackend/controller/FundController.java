@@ -55,4 +55,7 @@ public class FundController {
             return CommonResponse.fail(HttpStatus.BAD_REQUEST);
         }
     }
+
+    // @TODO 基金体检，准备购买的基金和已经持有的基金关系图谱（可以把基金图谱简化，平时看不需要那么详细信息）
+    //  所以基金和用户绑定先做   用户注册先做
 }

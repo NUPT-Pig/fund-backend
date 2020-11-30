@@ -12,13 +12,16 @@ import java.util.Set;
 public class Fund {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "fund_code")
+    @Column(name = "fund_id")
+    private Long fundId;
+
+    @Column(name = "fund_code", unique = true, nullable = false)
     private String fundCode;
 
     @Column(name = "fund_name", nullable = false, unique = true)
     private String fundName;
 
     @ManyToMany
-    @JoinTable(name = "stock_rating_tb", joinColumns = @JoinColumn(name = "fund_code"), inverseJoinColumns = @JoinColumn(name = "stock_code"))
+    @JoinTable(name = "stock_rating_tb", joinColumns = @JoinColumn(name = "fund_id"), inverseJoinColumns = @JoinColumn(name = "stock_id"))
     private List<Stock> stockList;
 }
