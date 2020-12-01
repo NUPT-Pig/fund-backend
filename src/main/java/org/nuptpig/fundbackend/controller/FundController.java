@@ -28,9 +28,9 @@ public class FundController {
 
     @GetMapping(path = "")
     public ResponseEntity getFunds(@RequestParam(value = "per_page", required = false, defaultValue = "20") int perPage,
-                                   @RequestParam(value = "page", required = false, defaultValue = "0") int page){
+                                   @RequestParam(value = "page", required = false, defaultValue = "1") int page){
         // @todo   根据用户返回   admin返回所有     user返回各自的
-        Pageable pageable = PageRequest.of(page, perPage);
+        Pageable pageable = PageRequest.of(page-1, perPage);
         PageableFundResponse pageableFundResponse = fundService.getFunds(pageable);
         return CommonResponse.ok(pageableFundResponse);
     }
