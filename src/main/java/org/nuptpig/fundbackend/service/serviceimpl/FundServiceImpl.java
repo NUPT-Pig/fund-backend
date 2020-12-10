@@ -41,12 +41,27 @@ public class FundServiceImpl implements FundService {
         return MapperHelper.SourceToDestination(fund, FundDetailResponse.class);
     }
 
+    private Boolean userBindingExists(Fund fund, String userName){
+        return userBindingRepository.existsUserBindingByFundAndUserName(fund, userName);
+    }
+
     @Override
     public Boolean bindUser(UserBindRequest userBindRequest) {
-        UserBinding userBinding = MapperHelper.SourceToDestination(userBindRequest, UserBinding.class);
+        String userName = userBindRequest.getUserName();
+        UserBinding userBinding;
         Fund fund = fundRepository.getFundByFundCode(userBindRequest.getFundCode());
         if (fund == null){
             return false;
+        }
+        if (userBindingExists(fund, userName)){
+            System.out.println("update userBinding for " + userName);
+            userBinding = userBindingRepository.getByUserNameAndFund(userName, fund);
+            userBinding.setAmountHeld(userBindRequest.getAmountHeld());
+            userBinding.setStatus(userBindRequest.getStatus());
+            userBinding.setHeldTime(userBindRequest.getHeldTime());
+        }else{
+            System.out.println("insert new userBinding for " + userName);
+            userBinding = MapperHelper.SourceToDestination(userBindRequest, UserBinding.class);
         }
         userBinding.setFund(fund);
         userBindingRepository.save(userBinding);

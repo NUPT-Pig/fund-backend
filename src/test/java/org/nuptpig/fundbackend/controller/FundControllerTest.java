@@ -2,9 +2,11 @@ package org.nuptpig.fundbackend.controller;
 
 import org.junit.jupiter.api.Test;
 import org.nuptpig.fundbackend.FundBackendApplicationTests;
+import org.nuptpig.fundbackend.entity.UserBinding;
 import org.nuptpig.fundbackend.util.CommonResult;
 import org.nuptpig.fundbackend.vo.FundDetailResponse;
 import org.nuptpig.fundbackend.vo.PageableFundResponse;
+import org.nuptpig.fundbackend.vo.UserBindRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
@@ -44,5 +46,13 @@ class FundControllerTest extends FundBackendApplicationTests {
 
     @Test
     void userBind() {
+        String fundCode = "501010";
+        String userName = "viewer";
+        UserBindRequest userBindRequest = new UserBindRequest();
+        userBindRequest.setFundCode(fundCode);
+        userBindRequest.setUserName(userName);
+        userBindRequest.setStatus(UserBinding.Status.FOLLOW);
+        ResponseEntity responseEntity = fundController.userBind(userBindRequest);
+        Assertions.assertThat(responseEntity.getStatusCode().equals(HttpStatus.OK));
     }
 }

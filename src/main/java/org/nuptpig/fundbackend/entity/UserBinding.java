@@ -20,8 +20,11 @@ public class UserBinding {
     @JoinColumn(name = "fund_id")
     Fund fund;
 
+    @Enumerated(value = EnumType.ORDINAL)
+    private Status status;
+
     @Column(name = "amount_held")
-    private float amountHeld;  //持有金额
+    private double amountHeld;  //持有金额
 
     @CreationTimestamp
     @Column(name = "created_time")
@@ -29,4 +32,8 @@ public class UserBinding {
 
     @Column(name = "held_time")
     private Timestamp heldTime;  //持有时间
+
+    public enum Status {
+        DEFAULT, FOLLOW, HOLD
+    }
 }
