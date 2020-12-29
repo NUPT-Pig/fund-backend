@@ -10,4 +10,5 @@ public interface UserBindingRepository extends PagingAndSortingRepository<UserBi
     List<UserBinding> findAllByUserName(String userName);
     Boolean existsUserBindingByFundAndUserName(Fund fund, String userName);
     UserBinding getByUserNameAndFund(String userName, Fund fund);
+    UserBinding getUserBindingByFundAndUserName(Fund fund, String userName);
 }

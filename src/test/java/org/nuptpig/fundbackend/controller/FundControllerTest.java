@@ -18,13 +18,16 @@ import org.assertj.core.api.Assertions;
 
 class FundControllerTest extends FundBackendApplicationTests {
 
+    // username: test
+    private String token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDg2NDU2NjksInVzZXJuYW1lIjoidGVzdCJ9.ZCQMYZlh-TN14diC8X9Fe6mwig_vUOed76QC3D9er3Q";
+
     @Autowired
     private FundController fundController;
 
     @Test
     void getFunds() {
         Long INIT_FUND_TOTAL = 5L;
-        ResponseEntity responseEntity = fundController.getFunds(20, 1);
+        ResponseEntity responseEntity = fundController.getFunds(20, 1, "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDg2NDU2NjksInVzZXJuYW1lIjoidGVzdCJ9.ZCQMYZlh-TN14diC8X9Fe6mwig_vUOed76QC3D9er3Q");
         Assertions.assertThat(responseEntity.getStatusCode().equals(HttpStatus.OK));
         PageableFundResponse pageableFundResponse = getVo(responseEntity);
         Assertions.assertThat(pageableFundResponse.getTotal().equals(INIT_FUND_TOTAL));
