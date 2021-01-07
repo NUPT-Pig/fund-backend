@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface FundService {
     PageableFundResponse getFunds(Pageable pageable);
+    PageableFundResponse getFunds(Pageable pageable, String userName);
     Fund createFund(Fund fund);
     FundDetailResponse getFundByFundCode(String fundCode);
     Boolean bindUser(UserBindRequest userBindRequest);

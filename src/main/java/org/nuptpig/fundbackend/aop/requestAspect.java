@@ -66,6 +66,7 @@ public class requestAspect {
         for(int i=0; i<paramNames.length; i++){
             String paramName = paramNames[i];
             if (userParamName.equals(paramName)){
+                // 从JWT获取用户名
                 args[i] = JWTHelper.getUsername((String) args[i]);
             }
         }

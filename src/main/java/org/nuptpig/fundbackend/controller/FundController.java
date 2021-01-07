@@ -30,10 +30,8 @@ public class FundController {
     public ResponseEntity getFunds(@RequestParam(value = "per_page", required = false, defaultValue = "20") int perPage,
                                    @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                    @RequestHeader(value = "token", required = false) String userName){
-        // @todo   根据用户返回   admin返回不加关注状态     user返回加关注状态
-        System.out.println(userName);
         Pageable pageable = PageRequest.of(page-1, perPage);
-        PageableFundResponse pageableFundResponse = fundService.getFunds(pageable);
+        PageableFundResponse pageableFundResponse = fundService.getFunds(pageable, userName);
         return CommonResponse.ok(pageableFundResponse);
     }
 

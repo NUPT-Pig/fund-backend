@@ -31,6 +31,20 @@ public class FundServiceImpl implements FundService {
     }
 
     @Override
+    public PageableFundResponse getFunds(Pageable pageable, String userName) {
+        Page<Fund> funds = fundRepository.findAll(pageable);
+        List<Fund> fundList = funds.toList();
+        List<FundResponse> fundResponses = new ArrayList<>();
+        for (Fund fund : fundList) {
+            UserBinding userBinding = userBindingRepository.getUserBindingByFundAndUserName(fund, userName);
+            FundResponse fundResponse = MapperHelper.SourceToDestination(fund, FundResponse.class);
+            if (userBinding != null) {fundResponse.setStatus(userBinding.getStatus());}
+            fundResponses.add(fundResponse);
+        }
+        return new PageableFundResponse(funds.getTotalElements(), funds.getTotalPages(), fundResponses);
+    }
+
+    @Override
     public Fund createFund(Fund fund) {
         return fundRepository.save(fund);
     }
