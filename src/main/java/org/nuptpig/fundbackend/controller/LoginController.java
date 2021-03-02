@@ -1,6 +1,6 @@
 package org.nuptpig.fundbackend.controller;
 
-import org.nuptpig.fundbackend.util.CommonResponse;
+import org.nuptpig.fundcommon.Response.CommonResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

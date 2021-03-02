@@ -3,7 +3,6 @@ package org.nuptpig.fundbackend.controller;
 import org.junit.jupiter.api.Test;
 import org.nuptpig.fundbackend.FundBackendApplicationTests;
 import org.nuptpig.fundbackend.entity.UserBinding;
-import org.nuptpig.fundbackend.util.CommonResult;
 import org.nuptpig.fundbackend.vo.FundDetailResponse;
 import org.nuptpig.fundbackend.vo.FundResponse;
 import org.nuptpig.fundbackend.vo.PageableFundResponse;

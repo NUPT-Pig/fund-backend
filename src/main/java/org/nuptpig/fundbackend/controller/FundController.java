@@ -2,10 +2,9 @@ package org.nuptpig.fundbackend.controller;
 
 import org.nuptpig.fundbackend.entity.Fund;
 import org.nuptpig.fundbackend.service.FundService;
-import org.nuptpig.fundbackend.util.CommonResponse;
-import org.nuptpig.fundbackend.util.CommonResult;
-import org.nuptpig.fundbackend.util.MapperHelper;
 import org.nuptpig.fundbackend.vo.*;
+import org.nuptpig.fundcommon.Response.CommonResponse;
+import org.nuptpig.fundcommon.Tools.MapperHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

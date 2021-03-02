@@ -1,8 +1,8 @@
 package org.nuptpig.fundbackend.controller;
 
 import org.nuptpig.fundbackend.service.StockService;
-import org.nuptpig.fundbackend.util.CommonResponse;
 import org.nuptpig.fundbackend.vo.StockInFundResponse;
+import org.nuptpig.fundcommon.Response.CommonResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

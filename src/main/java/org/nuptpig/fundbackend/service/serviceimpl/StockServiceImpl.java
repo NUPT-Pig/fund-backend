@@ -3,9 +3,9 @@ package org.nuptpig.fundbackend.service.serviceimpl;
 import org.nuptpig.fundbackend.dao.StockRatingRepository;
 import org.nuptpig.fundbackend.entity.StockRating;
 import org.nuptpig.fundbackend.service.StockService;
-import org.nuptpig.fundbackend.util.MapperHelper;
 import org.nuptpig.fundbackend.vo.FundResponse;
 import org.nuptpig.fundbackend.vo.StockInFundResponse;
+import org.nuptpig.fundcommon.Tools.MapperHelper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

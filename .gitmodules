@@ -1,0 +1,4 @@
+[submodule "fund-common"]
+	path = fund-common
+	url = https://github.com/NUPT-Pig/fund-common.git
+	branch = dev

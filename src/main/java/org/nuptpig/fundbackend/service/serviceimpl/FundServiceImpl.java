@@ -5,8 +5,8 @@ import org.nuptpig.fundbackend.dao.UserBindingRepository;
 import org.nuptpig.fundbackend.entity.Fund;
 import org.nuptpig.fundbackend.entity.UserBinding;
 import org.nuptpig.fundbackend.service.FundService;
-import org.nuptpig.fundbackend.util.MapperHelper;
 import org.nuptpig.fundbackend.vo.*;
+import org.nuptpig.fundcommon.Tools.MapperHelper;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
